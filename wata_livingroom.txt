@@ -1,0 +1,132 @@
+
+void enterLiving() {
+
+    cout <<"\nThe room smells of ammonia and mildew.\n"
+    <<"You look to the central window to see it broken. The wind outside howls through the cracks.\n"
+    <<"Under the window still, a couch stands with its cushions sunken in.\n"
+    <<"There are two doors to your sides. Whispers seem to source from one of them, but the echos make it impossible to tell unless you get closer\n";
+    livingroom();
+}
+void livingroom() {
+
+    bool looked = false;
+    string choice;
+    while (true) {
+         int choiceLiving;
+    int choiceBasement;
+    cout<<"\nYou are in the LIVING ROOM.\n"
+        "1. Try the left door\n"
+    <<"2. Check the couch\n"
+    <<"3. Try the right door\n"
+    <<"4. Go back to the foyer\n"
+      "Choice: ";
+    cin>>choiceLiving;
+    if (choiceLiving==1) {
+        if (hasKeyBase==false) {
+            cout<<"\nYou try to enter the room but its locked.\n";
+            livingroom();
+        }
+        if (hasKeyBase==true) {
+            tryBase==true;
+            cout<<"\nYou enter the key you found from the couch.\nThe key turns with little resistance, and the door opens into the void.";
+            cout<<"\n1. Enter basement"
+            <<"\n2. Stay in living room"
+              "\nChoice: ";
+           cin>>choiceBasement;
+            if (choiceBasement==1) {
+                cout<<"\nYou descend the stairs...\n";
+                basement();
+                break;
+            }
+            if (choiceBasement==2) {
+                cout<<"\nYou shut the door.\n";
+                livingroom();
+            }
+            if (choiceBasement!=1&&choiceBasement!=2) {
+                cout<<"\nEnter a valid option\n";
+                cin>>choiceBasement;
+            }
+
+        }
+    }
+    if (choiceLiving==2) {
+        cout<< "\nYou walk closer to the couch, your flashlight at the ready. The wind howls more fervently, and the \nechos of whispers only seem to get more intense.\n"
+        <<"The air blasting your face is harsh and cold, but it masks the rotting scent of the matted blankets. You're \nsure of the presence of bodily fluids, but you're unable to determine what kind.\n"
+        <<"It's apparent someone spent their last moments here; their body likely went undiscovered for some time \nafterwards.\n"
+        <<"The thought sends shivers down your neck.\n";
+        int choiceCouch;
+        cout<<"\n1. Check window still\n";
+        cout<<"2. Check under couch\n"
+              "Choice: ";
+        cin>>choiceCouch;
+        if (choiceCouch==1) {//checking windowstill
+            cout<<"\nYou lean forward to see cobwebs and broken glass.\n"
+                  "In this position, the wind sounds less like a howl and more like chimes.\n"
+                  "A sorrowful chord; G minor, he recalls.\n";
+            //Maybe inform the player that this information will be useful later?
+            cout<<"\n2. Check under couch\n";
+            cin>>choiceCouch;
+            if (choiceCouch!=2) {
+                cout<<"Enter a valid option.\n";
+                cout<<"\n2. Check under couch\n"
+                      "Choice:";
+                cin>>choiceCouch;
+
+            }
+        }
+        if (choiceCouch==2) {//checking under couch
+            hasKeyBase=true;
+            if (checkCouch==false) {
+                cout<<"\nYou sink to your knees, using your left hand for stability";
+            cout<<"\nThe underside of the couch is completely obscured by cobwebs. The spiders' silk is adorned with dust and roach carcasses.\n"
+            <<"The scent is unbearable here. Mouthbreathing isn't an option, the wafting smell is almost palpable on your tongue.\n"
+            <<"As you survey the couches underside with your flashlight, you notice something glint near the back leg.\n"
+            <<"A key! Maybe it can work on one of the doors...\n";
+                checkCouch=true;
+                livingroom();
+            }
+            if (checkCouch==true) {
+                cout<<"\nAfter putting your hand through all those cobwebs you really don't want to see what else the\n couch has in store for you.\n";
+                livingroom();
+
+            }
+
+
+
+        }
+
+    }
+    if (choiceLiving==3) {
+
+
+        if (hasKeyBase==true) {
+            if (tryBase==true) {
+                cout<<"\nYou're not sure if you'll find a way to unlock this door."
+                <<" You're not sure if you want to either.\n";
+                livingroom();
+            }
+            if (tryBase==false) {
+                cout<<"\nThe door is locked. After some struggle, you manage to force the key into the lock, but it doesn't turn.\n"
+                <<"This key is probably for a different door.\n";
+                livingroom();
+            }
+
+        }
+        if (hasKeyBase==false) {
+            cout<<"\nThe door is locked.\n";
+            livingroom();
+        }
+
+    }
+    if (choiceLiving==4) {
+        foyer();
+    }
+    if (choiceLiving!=1&&choiceLiving!=2&&choiceLiving!=3&&choiceLiving!=4){
+        cout<<"\nInvalid choice\n";
+        livingroom();
+    }
+
+
+}
+      
+    }

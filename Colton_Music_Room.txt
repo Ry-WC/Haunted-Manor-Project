@@ -1,0 +1,49 @@
+//music Room with note puzzle
+void music_room() {
+    bool looked = false;
+    bool puzzleSolved = false;
+    string choice;
+    string userInput;
+    const string correctSequence = "CDEFG";
+
+    while (true) {
+        cout << "\nYou are in the MUSIC ROOM.\n";
+        cout << "A grand piano sits at the center. There's a small sealed box sitting atop the piano.\n";
+        cout << "What would you like to do?\n";
+        if (!looked) {
+            cout << "1. Look at the piano and box\n";
+        }
+        if (looked && !puzzleSolved) {
+            cout << "2. Play a sequence of notes\n";
+            cout << "3. Return to library\n";
+        }
+        if (puzzleSolved) {
+            cout << "1. Return to library\n";
+        }
+        cout << "Choice: ";
+        getline(cin, choice);
+
+        if (choice == "1" && !looked) {
+            looked = true;
+            cout << "You examine the piano. A note on the box reads:\n";
+            cout << "\"Only the right melody will grant the key. Five notes to harmony.\"\n";
+            cout << "You suspect you need to play a specific sequence of 5 musical notes (A-G).\n";
+        } else if (choice == "2" && looked && !puzzleSolved) {
+            cout << "Enter 5 notes (e.g., CDEFG): ";
+            getline(cin, userInput);
+
+            if (userInput == correctSequence) {
+                cout << "The box clicks open! Inside, you find a small brass key.\n";
+                hasKey = true;
+                puzzleSolved = true;
+            } else {
+                cout << "Nothing happens. That wasn't the correct sequence.\n";
+            }
+        } else if ((choice == "3" && !puzzleSolved) || (choice == "1" && puzzleSolved)) {
+            library();
+            break;
+        } else {
+            cout << "Invalid choice.\n";
+        }
+    }
+}

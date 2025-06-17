@@ -1,0 +1,48 @@
+//library
+void library() {
+    bool looked = false;
+    string choice;
+    string redBook = "Red";
+    string blueBook = "Blue";
+
+    while (true) {
+        cout << "\nYou are in the LIBRARY.\n";
+        cout << "What would you like to do?\n";
+        if (!looked) cout << "1. Look around\n";
+        if (looked && !booksSwapped) cout << "2. Swap the red and blue books\n";
+        if (booksSwapped) cout << "2. Enter music room\n";
+        if (looked) {
+            cout << "3. Enter office\n";
+            cout << "4. Return to stairwell\n";
+        }
+        cout << "Choice: ";
+        getline(cin, choice);
+
+        if (choice == "1" && !looked) {
+            looked = true;
+            cout << "You notice two odd books: one red and one blue.\n";
+            cout << "An inscription reads:\n";
+            cout << "\"When red and blue change their view, a secret will appear to you.\"\n";
+        } else if (choice == "2" && looked && !booksSwapped) {
+            cout << "You swap the red and blue books on the shelf.\n";
+            swap(redBook, blueBook);
+            if (redBook != "Red") {
+                booksSwapped = true;
+                cout << "The bookshelf trembles... a secret passage opens to the MUSIC ROOM!\n";
+            } else {
+                cout << "Nothing seems to happen.\n";
+            }
+        } else if (choice == "2" && booksSwapped) {
+            music_room();
+            break;
+        } else if (choice == "3" && looked) {
+            office();
+            break;
+        } else if (choice == "4" && looked) {
+            stairwell();
+            break;
+        } else {
+            cout << "Invalid choice.\n";
+        }
+    }
+}

@@ -1,0 +1,38 @@
+//basement
+void basement() {
+    bool looked = false;
+    bool petCat = false;
+    string choice;
+
+    while (true) {
+        cout << "\nYou are in the Basement.\n";
+        cout << "The air is damp and filled with the scent of old wood and mildew.\n";
+        cout << "It's quiet... too quiet.\n";
+        cout << "What would you like to do?\n";
+
+        if (!looked) cout << "1. Look around\n";
+        if (looked && !petCat) cout << "2. Pet the cat\n";
+        if (looked) cout << "3. Enter the old door\n";
+
+        cout << "Choice: ";
+        getline(cin, choice);
+
+        if (choice == "1" && !looked) {
+            looked = true;
+            cout << "As your eyes adjust to the darkness, you spot glowing eyes behind a dusty shelf.\n";
+            cout << "A black cat silently watches you. It doesn't seem to move by your sight....\n";
+            cout << "To your right, you now notice an old wooden door partially concealed by shadows.\n";
+        } else if (choice == "2" && looked && !petCat) {
+            petCat = true;
+            cout << "You gently pet the cat. It purrs softly, then lets out a single haunting meow.\n";
+            cout << "The note sounds eerily like a perfect G...\n";
+            cout << "Without warning, the cat slips away and vanishes into the darkness.\n";
+        } else if (choice == "3" && looked) {
+            cout << "You open the creaky old door and step through...\n";
+            living_room();
+            break;
+        } else {
+            cout << "Invalid choice.\n";
+        }
+    }
+}

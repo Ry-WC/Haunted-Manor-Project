@@ -1,0 +1,47 @@
+//intro
+void intro() {
+    cout << "---------------------------------------------------\n";
+    cout << "     WELCOME TO THE HAUNTED HOUSE ADVENTURE\n";
+    cout << "---------------------------------------------------\n\n";
+    cout << "It's a dark Halloween night. You are a high school student named Alex.\n"
+        << "Your friends dared you to step into the old haunted mansion on the hill.\n"
+        << "You gather your courage and open the front door...\n"
+        << "*CREAK*\n"
+        << "You step inside and the door slams shut behind you!\n"
+        << "A ghostly lock appears on the door. You must find the key to escape.\n\n";
+}
+
+//foyer
+void foyer() {
+    bool looked = false;
+    string choice;
+    while (true) {
+        cout << "\nYou are in the FOYER.\n";
+        cout << "What would you like to do?\n";
+        if (!looked) cout << "1. Look around\n";
+        cout << "2. Try the front door\n";
+        if (looked) {
+            cout << "3. Enter kitchen\n";
+            cout << "4. Enter stairwell\n";
+            cout << "5. Enter living room\n";
+        }
+        cout << "Choice: ";
+        getline(cin, choice);
+
+        if (choice == "1" && !looked) {
+            looked = true;
+            cout << "You see several doors leading to different rooms.\n";
+        } else if (choice == "2") {
+            tryDoor();
+        } else if (choice == "3" && looked) {
+            kitchen();
+        } else if (choice == "4" && looked) {
+            stairwell();
+            break;
+        } else if (choice == "5" && looked) {
+            living_room();
+        } else {
+            cout << "Invalid choice.\n";
+        }
+    }
+}

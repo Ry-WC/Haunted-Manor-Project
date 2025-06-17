@@ -1,0 +1,80 @@
+#include <iostream>
+#include <string>
+using namespace std;
+// Function declarations
+void intro();
+void foyer();
+void lookAround();
+void tryDoor();
+void enterKitchen();
+bool hasLooked = false;
+bool hasKey = false; // still unused for now
+int main() {
+   intro();
+   foyer();
+   return 0;
+}
+// Game Introduction
+void intro() {
+   cout << "---------------------------------------------------\n";
+   cout << "     WELCOME TO THE HAUNTED HOUSE ADVENTURE\n";
+   cout << "---------------------------------------------------\n\n";
+   cout << "It's a dark Halloween night. You are a high school student named Alex.\n"
+        << "Your friends dared you to step into the old haunted mansion on the hill.\n"
+        << "You gather your courage and open the front door...\n"
+        << "*CREAK*\n"
+        << "You step inside and the door slams shut behind you!\n"
+        << "A ghostly lock appears on the door. You must find the key to escape.\n\n";
+}
+// Main room function
+void foyer() {
+   string choice;
+   while (true) {
+       cout << "\nYou are in the foyer of the haunted house.\n";
+       cout << "What would you like to do?\n";
+       if (!hasLooked) {
+           cout << " - look\n";
+       }
+       cout << " - try door\n";
+       if (hasLooked) {
+           cout << " - enter kitchen\n";
+       }
+       cout << "> ";
+       getline(cin, choice);
+
+       if (choice == "look" && !hasLooked) {
+           lookAround();
+       } else if (choice == "try door") {
+           tryDoor();
+       } else if (choice == "enter kitchen" && hasLooked) {
+           enterKitchen();
+           break;
+       } else {
+           cout << "Invalid option. Try again.\n";
+       }
+   }
+}
+// Searching the room (no key yet)
+void lookAround() {
+   cout << "\nYou examine the dusty foyer carefully...\n"
+        << "Your eyes catch an unusual draft coming from behind a crooked bookcase.\n"
+        << "You push it aside, revealing a narrow doorway leading to the kitchen.\n";
+   hasLooked = true;
+}
+// Trying the front door
+void tryDoor() {
+   if (hasKey) {
+       cout << "You insert the key into the glowing lock...\n"
+            << "*CLICK* The door creaks open and you escape!\n";
+   } else {
+       cout << "You try the front door, but it's sealed shut by an eerie magic.\n"
+            << "You'll need to explore further to find a way out.\n";
+   }
+}
+// Kitchen transition stub
+void enterKitchen() {
+   cout << "\nYou step cautiously into the kitchen...\n"
+        << "The air is thick with the scent of mold and something... burnt.\n"
+        << "Cobwebs cling to rusted utensils and the room is deathly silent.\n";
+   // You can add more interaction here
+}

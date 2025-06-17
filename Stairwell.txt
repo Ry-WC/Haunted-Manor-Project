@@ -1,0 +1,47 @@
+//stairwell
+void stairwell() {
+    string choice;
+    int attempts = 0;
+    bool slideTriggered = false;
+
+    cout << "\nYou are in the Stairwell.\n";
+
+    while (true) {
+        attempts++;
+        cout << "What would you like to do?\n";
+
+        if (attempts == 3 && !slideTriggered) {
+            cout << "1. Look back\n";
+            cout << "2. Try to go up to the library\n";
+            cout << "3. Return to foyer\n";
+        } else {
+            cout << "1. Try to go up to the library\n";
+            cout << "2. Return to foyer\n";
+        }
+
+        cout << "Choice: ";
+        getline(cin, choice);
+
+        if (attempts == 3 && !slideTriggered && choice == "1") {
+            cout << "You turn around slowly...\n";
+            cout << "Suddenly, the floor gives way beneath you!\n";
+            cout << "You slide down a dark chute and land with a thud in the Basement.\n";
+            slideTriggered = true;
+            basement();  // Send to basement
+            break;
+        } else if ((choice == "1" && attempts != 3) || (choice == "2" && attempts == 3 && !slideTriggered)) {
+            if (attempts < 5) {
+                cout << "You try to ascend the stairwell, but a mysterious force stops you.\n";
+            } else {
+                cout << "The force seems to fade... you can now ascend.\n";
+                library();
+                break;
+            }
+        } else if ((choice == "2" && attempts != 3) || (choice == "3" && attempts == 3 && !slideTriggered)) {
+            foyer();
+            break;
+        } else {
+            cout << "Invalid choice.\n";
+        }
+    }
+}

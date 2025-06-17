@@ -1,0 +1,133 @@
+#include <iostream>
+using namespace std;
+bool blowCandles=false;
+bool tryBarrier=false;
+void enterKitchen() {
+    cout << "\nYou step cautiously into the kitchen...\n"
+         << "The air is thick with the scent of mold and something... burnt.\n"
+         << "Dust clings to countertops, cobwebs cling to rusted utensils and the room is deathly silent.\n"
+            "Mud trails along the floors leading into a closed pantry. The pantry has no cobwebs attached to it.\n"
+            "Just ahead of you, the doorway to the dining room is covered in a thick dense fog.\n"
+            "The fog doesn't disperse throughout the room; waves of fog seem to be running in place.\n";
+
+    // You can add more interaction here
+     kitchen();
+}
+void kitchen() {
+    bool looked = false;
+    string choice;
+
+    while (true) {
+        cout << "\nYou are in the KITCHEN.\n"
+             << "What would you like to do?\n";
+        cout<<"\n1. Attempt to enter the dining room\n"
+    <<"2. Find the source of the burning\n"
+    <<"3. Go back to the foyer"
+      "Choice: \n";
+    int choiceKitchen;
+    cin>>choiceKitchen;
+    if (choiceKitchen==1) {//enter dining
+        if (blowCandles==false&&tryBarrier==false) {
+            cout<<"\nThe hum grows stronger as you approach the fog. It sings in a low E note.\n"
+                  "You lead with your hand, but a single finger is enough for your entire arm to spasm uncontrollably, and your vision grows dark from the numbing pain.\n"
+            <<"It takes nearly all of your weight to pull your hand out from the barrier, causing you fall to the floor to catch your breath.\n"
+            <<"You wonder what could be inducing such a strong force barrier...\n";
+            tryBarrier=true;
+            kitchen();
+        }
+        if (blowCandles==false&&tryBarrier==true) {
+            cout<<"\nYou remember the feeling of the spasms, and that's enough for you to hold out on the barrier for now.\n";
+            kitchen();
+        }
+        if (blowCandles==true) {
+            cout<<"\nAs the first candle dims, you notice the barrier's hum grow softer.\n"
+                  "You continue until all five candles have been extinguished.\n"
+                  "The dense fog covering the doorway disperses, revealing an entry into the dining room.\n";
+            cout<<"\n1. Enter dining room"
+                  "\n2. Stay in kitchen"
+                  "\nChoice: ";
+            int choiceEnterDining;
+            cin>>choiceEnterDining;
+            if (choiceEnterDining==1) {
+                dining_room();
+            }
+            if (choiceEnterDining==2) {
+                kitchen();
+            }
+            if (choiceEnterDining!=1&&choiceEnterDining!=2) {
+                cout<<"\nEnter a valid option\n";
+                cout<<"\n1. Enter dining room"
+                  "\n2. Go back to kitchen"
+                  "\nChoice: ";
+
+                cin>>choiceEnterDining;
+
+            }
+        }
+
+    }
+    if (choiceKitchen==2) {//enter pantry
+        cout<<"You notice mud footprints trailing from in and out of the pantry.\n"
+        <<"Roaches scurry as you enter, none interfering with the moderately sized pentagram on the ground.\n"
+          "The pentagram is drawn out of mud, and on each of its points sits a recently lit candle";
+        if (blowCandles==true) {
+
+
+        }
+        int choicePantry;
+        cout<<"\n1. Go back to kitchen \n";
+        if (blowCandles==false) {
+            cout<<"2. Blow out candles\n";
+              }
+
+
+        cin>>choicePantry;
+        if (choicePantry==1) {
+            kitchen();
+        }
+        if (choicePantry==2) {
+            blowCandles=true;
+            cout<<"\nYou blow out the candles and a chill passes through you\n"
+                  "You notice the fog in the dining room passage dissipate.";
+            kitchen();
+        }
+        if (choicePantry!=1&&choicePantry!=2) {
+            cout<<"\nEnter a valid option\n";
+
+            cin>>choicePantry;
+
+        }
+
+
+
+
+
+
+    }
+    if (choiceKitchen==3) {
+        foyer();
+
+    }
+
+
+     /*   if (!looked) cout << "1. Look around\n";
+        cout << "2. Return to foyer\n";
+        cout << "3. Enter the Dining Room\n"
+             << "Choice: ";
+
+        getline(cin, choice);
+
+        if (choice == "1" && !looked) {
+            looked = true;
+            cout << "You take a closer look at the kitchen, noting its eerie emptiness...\n";
+        } else if (choice == "2") {
+            foyer();
+            break;
+        } else if (choice == "3") {
+            dining_room();
+            break;
+        } else {
+            cout << "Invalid choice. Try again.\n";
+        }*/
+    }
+}
